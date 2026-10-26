@@ -48,3 +48,11 @@ root = tk.Tk()
 root.title("Aplikasi Nilai Siswa")
 root.geometry("400x500")
 
+# Judul aplikasi
+judul = tk.Label(
+    root,
+    text="Aplikasi Nilai Siswa",
+    font=("Times New Roman", 14)
+)
+judul.pack(pady=10)
+
