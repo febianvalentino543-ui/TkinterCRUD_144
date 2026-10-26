@@ -41,3 +41,10 @@ def tentukan_prediksi(biologi, fisika, inggris):
         return "Bahasa"         
 
 
+# ============== membuat window =====================
+init_db()
+
+root = tk.Tk()
+root.title("Aplikasi Nilai Siswa")
+root.geometry("400x500")
+
