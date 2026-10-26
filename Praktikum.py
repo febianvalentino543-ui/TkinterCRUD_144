@@ -66,3 +66,25 @@ label_nama.pack(side="left")
 entry_nama = tk.Entry(frame_nama, width=15)
 entry_nama.pack(side="left")
 
+# Daftar mata pelajaran (urutan disamakan dengan soal)
+mapel = [
+    "Biologi",
+    "Fisika",
+    "Inggris",
+]
+
+# dengan nama mapel: input_nilai["Biologi"]
+input_nilai = {}
+
+for nama in mapel:
+    frame = tk.Frame(root)
+    frame.pack(pady=3)
+
+    label = tk.Label(frame, text=nama, width=20, anchor="w")
+    label.pack(side="left")
+
+    entry = tk.Entry(frame, width=15)
+    entry.pack(side="left")
+
+    input_nilai[nama] = entry
+
