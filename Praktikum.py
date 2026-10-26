@@ -88,3 +88,53 @@ for nama in mapel:
 
     input_nilai[nama] = entry
 
+#  validasi -> prediksi -> simpan
+def submit_nilai():
+    nama = entry_nama.get().strip()
+    biologi = input_nilai["Biologi"].get().strip()
+    fisika = input_nilai["Fisika"].get().strip()
+    inggris = input_nilai["Inggris"].get().strip()
+
+    # 1. Validasi input
+    if not nama or not biologi or not fisika or not inggris:
+        messagebox.showwarning("Data kurang", "Semua kolom harus diisi.")
+        return
+    if not (biologi.isdigit() and fisika.isdigit() and inggris.isdigit()):
+        messagebox.showwarning("Nilai salah", "Nilai harus berupa angka.")
+        return
+
+    biologi, fisika, inggris = int(biologi), int(fisika), int(inggris)
+    if max(biologi, fisika, inggris) > 100:
+        messagebox.showwarning("Nilai salah", "Nilai maksimal 100.")
+        return
+
+    # 2. Tentukan prediksi
+    prediksi = tentukan_prediksi(biologi, fisika, inggris)
+
+    # 3. Simpan ke database
+    try:
+        add_nilai(nama, biologi, fisika, inggris, prediksi)
+    except sqlite3.IntegrityError:
+        messagebox.showwarning("Nama sudah ada", "Nama siswa ini sudah tersimpan.")
+        return
+
+    # 4. Tampilkan hasil, lalu kosongkan form
+    hasil.config(text=f"Hasil Prediksi: {prediksi}")
+    entry_nama.delete(0, tk.END)
+    for e in input_nilai.values():
+        e.delete(0, tk.END)
+
+# Tombol submit
+tombol = tk.Button(
+    root,
+    text="Submit Nilai",
+    command=submit_nilai
+)
+tombol.pack(pady=10)
+
+# Menampilkan hasil
+hasil = tk.Label(root, text="Hasil Prediksi: -")
+hasil.pack()
+
+# Menjalankan aplikasi
+root.mainloop()
