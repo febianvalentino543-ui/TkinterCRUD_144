@@ -28,3 +28,7 @@ def add_nilai(nama, biologi, fisika, inggris, prediksi):
                  VALUES (?, ?, ?, ?, ?)""",
               (nama, biologi, fisika, inggris, prediksi))
 
+def get_nilai():
+    return run_query("""SELECT Nama_siswa, Biologi, Fisika, Inggris, Prediksi_Fakultas
+                        FROM Nilai_Siswa ORDER BY Nama_siswa""")
+
