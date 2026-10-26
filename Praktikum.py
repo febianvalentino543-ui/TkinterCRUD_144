@@ -56,3 +56,13 @@ judul = tk.Label(
 )
 judul.pack(pady=10)
 
+# tempat masukkan nama siswa
+frame_nama = tk.Frame(root)
+frame_nama.pack(pady=3)
+
+label_nama = tk.Label(frame_nama, text="Nama Siswa", width=20, anchor="w")
+label_nama.pack(side="left")
+
+entry_nama = tk.Entry(frame_nama, width=15)
+entry_nama.pack(side="left")
+
