@@ -32,3 +32,12 @@ def get_nilai():
     return run_query("""SELECT Nama_siswa, Biologi, Fisika, Inggris, Prediksi_Fakultas
                         FROM Nilai_Siswa ORDER BY Nama_siswa""")
 
+def tentukan_prediksi(biologi, fisika, inggris):
+    if biologi >= fisika and biologi >= inggris:
+        return "Kedokteran"     
+    elif fisika >= inggris:
+        return "Teknik"         
+    else:
+        return "Bahasa"         
+
+
